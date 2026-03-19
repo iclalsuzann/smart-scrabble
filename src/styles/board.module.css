@@ -1,0 +1,255 @@
+/* ============================================
+   Smart Scrabble - Classic Board Theme
+   ============================================ */
+
+.boardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  gap: 2px;
+  padding: 8px;
+  background: #1a5c2a;
+  border-radius: 8px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+  width: min(90vw, 600px);
+  aspect-ratio: 1;
+}
+
+.cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  font-size: clamp(6px, 1.2vw, 10px);
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.cellEmpty {
+  background: #2d8a4e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cellEmpty:hover {
+  background: #3da862;
+  transform: scale(1.05);
+}
+
+.cellTW {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.cellDW {
+  background: #e8a0bf;
+  color: #5a2d42;
+}
+
+.cellTL {
+  background: #3498db;
+  color: #fff;
+}
+
+.cellDL {
+  background: #85c1e9;
+  color: #2c3e50;
+}
+
+.cellStar {
+  background: #e8a0bf;
+  color: #5a2d42;
+  font-size: clamp(10px, 2vw, 18px);
+}
+
+.cellWithTile {
+  cursor: default;
+}
+
+.cellPlaced {
+  animation: placeTile 0.3s ease;
+}
+
+@keyframes placeTile {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Tile on board */
+.tile {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #f5deb3, #deb887);
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  position: relative;
+  font-size: clamp(8px, 1.8vw, 16px);
+  font-weight: 800;
+  color: #2c1810;
+  font-family: 'Georgia', serif;
+}
+
+.tileLetter {
+  line-height: 1;
+}
+
+.tilePoints {
+  position: absolute;
+  bottom: 1px;
+  right: 2px;
+  font-size: clamp(4px, 0.8vw, 8px);
+  font-weight: 600;
+  color: #5a3a28;
+}
+
+.tileTurnPlacement {
+  background: linear-gradient(145deg, #ffe4a0, #ffd060);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 6px rgba(255, 200, 0, 0.5);
+}
+
+.tileTurnPlacement:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.tileLastMove {
+  box-shadow:
+    0 0 0 2px rgba(74, 222, 128, 0.9),
+    0 0 10px rgba(34, 197, 94, 0.9),
+    1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Rack */
+.rack {
+  display: flex;
+  gap: 6px;
+  padding: 12px 16px;
+  background: linear-gradient(to bottom, #8B4513, #6B3410);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  min-height: 60px;
+  justify-content: center;
+  align-items: center;
+}
+
+.rackTile {
+  width: clamp(36px, 8vw, 52px);
+  height: clamp(36px, 8vw, 52px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #f5deb3, #deb887);
+  border-radius: 6px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  font-family: 'Georgia', serif;
+  user-select: none;
+}
+
+.rackTile:hover {
+  transform: translateY(-4px);
+  box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.rackTileSelected {
+  transform: translateY(-8px);
+  box-shadow: 2px 8px 12px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 200, 0, 0.6);
+  background: linear-gradient(145deg, #ffe4a0, #ffd060);
+}
+
+.rackTileLetter {
+  font-size: clamp(16px, 4vw, 24px);
+  font-weight: 800;
+  color: #2c1810;
+}
+
+.rackTilePoints {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: clamp(8px, 1.5vw, 11px);
+  font-weight: 600;
+  color: #5a3a28;
+}
+
+/* Bonus label inside cell */
+.bonusLabel {
+  font-size: clamp(5px, 1vw, 8px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnPrimary {
+  background: linear-gradient(to bottom, #27ae60, #1e8449);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btnPrimary:hover:not(:disabled) {
+  background: linear-gradient(to bottom, #2ecc71, #27ae60);
+  transform: translateY(-1px);
+}
+
+.btnSecondary {
+  background: linear-gradient(to bottom, #95a5a6, #7f8c8d);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btnSecondary:hover:not(:disabled) {
+  background: linear-gradient(to bottom, #bdc3c7, #95a5a6);
+  transform: translateY(-1px);
+}
+
+.btnDanger {
+  background: linear-gradient(to bottom, #e74c3c, #c0392b);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btnDanger:hover:not(:disabled) {
+  background: linear-gradient(to bottom, #ec7063, #e74c3c);
+  transform: translateY(-1px);
+}

@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Smart Scrabble - AI Powered Board Game
+
+A browser-based Scrabble game featuring AI opponents with **Greedy** and **Heuristic** strategies. Built as a term project for TOBB ETU YAP 441 course.
+
+![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwind-css)
+
+## Features
+
+- **15x15 Standard Scrabble Board** with all bonus squares (TW, DW, TL, DL)
+- **Human vs AI** gameplay with two AI difficulty levels
+- **Greedy AI**: Selects the highest-scoring move each turn
+- **Heuristic AI**: Uses weighted evaluation considering board control, rack management, and strategic positioning
+- **Trie-based Dictionary**: O(k) word validation using prefix tree data structure
+- **Anchor-based Move Generation**: Efficient move generation algorithm using DFS
+- **Real-time Scoring** with bonus square calculations and bingo bonus
+- **Move History** tracking with score breakdown
+- **Classic Scrabble Theme** with wooden tile aesthetics
+- **Responsive Design** - playable on desktop and mobile
+
+## AI Strategies
+
+### Greedy Strategy
+The greedy agent generates all valid moves and selects the one with the highest immediate score. This serves as a baseline strategy.
+
+### Heuristic Strategy
+The heuristic agent evaluates moves using a weighted combination of factors:
+- **Raw Score** (weight: 1.0) - The immediate point value of the move
+- **Bonus Exposure Penalty** (weight: -8.0) - Penalizes moves that open premium squares to the opponent
+- **Tile Usage Reward** (weight: 3.0) - Encourages using more tiles per turn
+- **Rack Balance** (weight: 2.0) - Maintains a balanced vowel/consonant ratio
+- **Center Proximity** (weight: 1.5) - Rewards plays near the board center
+- **Board Openness Penalty** (weight: -2.0) - Penalizes creating too many new anchor points
+
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS + CSS Modules
+- **Data Structure**: Trie (Prefix Tree) for dictionary
+- **Algorithm**: Anchor-based move generation with DFS
+- **Deployment**: Vercel
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  game/           # Game engine
+    types.ts      # TypeScript type definitions
+    constants.ts  # Board layout, letter points, tile distribution
+    trie.ts       # Trie data structure for word validation
+    tileBag.ts    # Tile bag management
+    board.ts      # Board operations and validation
+    scoring.ts    # Score calculation with bonus squares
+    moveGenerator.ts  # Anchor-based move generation (DFS)
+    aiGreedy.ts   # Greedy AI strategy
+    aiHeuristic.ts    # Heuristic AI strategy
+    gameState.ts  # Game state management (reducer)
+  components/     # React UI components
+  styles/         # CSS modules
+  app/            # Next.js app router pages
+```
 
-## Learn More
+## Game Rules
 
-To learn more about Next.js, take a look at the following resources:
+- Standard 15x15 Scrabble board with bonus squares
+- 98 letter tiles (no blank/joker tiles)
+- First move must cover the center star
+- All words must be valid English words from the dictionary
+- Cross-words are validated automatically
+- Game ends when tile bag is empty and a player uses all tiles, or after 4 consecutive passes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## References
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Appel, A. W., & Jacobson, G. J. (1988). The World's Fastest Scrabble Program
+- Sheppard, B. (2002). World-championship-caliber Scrabble (Maven)
+- Gordon, S. A. (1994). A Faster Scrabble Move Generation Algorithm (GADDAG)
 
-## Deploy on Vercel
+## Author
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Iclal Suzan** - TOBB ETU Computer Engineering
+Student ID: 211401020
+Course: YAP 441 - Term Project (Spring 2025-26)
