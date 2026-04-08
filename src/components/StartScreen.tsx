@@ -14,7 +14,6 @@ export default function StartScreen({ onStartGame, isLoading }: StartScreenProps
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-green-950 to-gray-900 flex items-center justify-center p-4">
       <div className="max-w-lg w-full text-center">
-        {/* Title */}
         <div className="mb-8">
           <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-600 mb-2 font-serif">
             SCRABBLE
@@ -24,7 +23,6 @@ export default function StartScreen({ onStartGame, isLoading }: StartScreenProps
           </p>
         </div>
 
-        {/* Decorative tiles */}
         <div className="flex justify-center gap-2 mb-8">
           {['S', 'C', 'R', 'A', 'B', 'B', 'L', 'E'].map((letter, i) => (
             <div
@@ -42,7 +40,6 @@ export default function StartScreen({ onStartGame, isLoading }: StartScreenProps
           ))}
         </div>
 
-        {/* AI Strategy Selection */}
         <div className="bg-gray-800/80 rounded-xl p-6 mb-6 backdrop-blur">
           <h2 className="text-white text-lg font-semibold mb-4">
             Choose AI Difficulty
@@ -57,7 +54,7 @@ export default function StartScreen({ onStartGame, isLoading }: StartScreenProps
                   : 'border-gray-600 hover:border-gray-500'
               }`}
             >
-              <div className="text-2xl mb-2">🎯</div>
+              <div className="text-2xl mb-2">Target</div>
               <div className="font-bold text-white text-sm">Greedy</div>
               <div className="text-xs text-gray-400 mt-1">
                 Picks the highest scoring move each turn
@@ -72,16 +69,15 @@ export default function StartScreen({ onStartGame, isLoading }: StartScreenProps
                   : 'border-gray-600 hover:border-gray-500'
               }`}
             >
-              <div className="text-2xl mb-2">🧠</div>
+              <div className="text-2xl mb-2">Brain</div>
               <div className="font-bold text-white text-sm">Heuristic</div>
               <div className="text-xs text-gray-400 mt-1">
-                Strategic play with board control & rack management
+                Strategic play with board control and rack management
               </div>
             </button>
           </div>
         </div>
 
-        {/* Start Button */}
         <button
           onClick={() => onStartGame(strategy)}
           disabled={isLoading}
@@ -99,14 +95,13 @@ export default function StartScreen({ onStartGame, isLoading }: StartScreenProps
               Loading Dictionary...
             </span>
           ) : (
-            '🎮 Start Game'
+            'Start Game'
           )}
         </button>
 
-        {/* Info */}
         <div className="mt-6 text-xs text-gray-500 space-y-1">
-          <p>Human vs AI • Standard Scrabble Rules • English Dictionary</p>
-          <p>YAP 441 - Smart Scrabble Project • TOBB ETU 2026</p>
+          <p>Human vs AI - Standard Scrabble Rules - Turkish Dictionary</p>
+          <p>YAP 441 - Smart Scrabble Project - TOBB ETU 2026 - Iclal Suzan</p>
         </div>
       </div>
     </div>
