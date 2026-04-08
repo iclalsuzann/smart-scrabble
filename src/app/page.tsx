@@ -228,45 +228,49 @@ export default function Home() {
         {!state.isAIThinking && state.message}
       </div>
 
-      <Board
-        board={state.board}
-        turnPlacements={state.turnPlacements}
-        selectedTile={selectedTile}
-        lastMove={
-          state.moveHistory.length > 0
-            ? state.moveHistory[state.moveHistory.length - 1].move
-            : null
-        }
-        onCellClick={handleCellClick}
-        onRemovePlacement={handleRemovePlacement}
-      />
+      <div className="w-full max-w-7xl flex flex-col xl:flex-row items-start justify-center gap-4">
+        <div className="flex-1 min-w-0 flex flex-col items-center gap-4">
+          <Board
+            board={state.board}
+            turnPlacements={state.turnPlacements}
+            selectedTile={selectedTile}
+            lastMove={
+              state.moveHistory.length > 0
+                ? state.moveHistory[state.moveHistory.length - 1].move
+                : null
+            }
+            onCellClick={handleCellClick}
+            onRemovePlacement={handleRemovePlacement}
+          />
 
-      <Rack
-        tiles={state.players[0].rack}
-        selectedTile={selectedTile}
-        onTileSelect={setSelectedTile}
-        disabled={!isHumanTurn || state.isAIThinking}
-      />
+          <Rack
+            tiles={state.players[0].rack}
+            selectedTile={selectedTile}
+            onTileSelect={setSelectedTile}
+            disabled={!isHumanTurn || state.isAIThinking}
+          />
 
-      <GameControls
-        canSubmit={state.turnPlacements.length > 0}
-        canRecall={state.turnPlacements.length > 0}
-        canExchange={
-          state.turnPlacements.length === 0 &&
-          state.players[0].rack.length > 0 &&
-          state.tileBag.length > 0
-        }
-        isHumanTurn={isHumanTurn}
-        isAIThinking={state.isAIThinking}
-        onSubmit={handleSubmit}
-        onPass={handlePass}
-        onRecall={handleRecall}
-        onShuffle={handleShuffle}
-        onExchange={handleExchange}
-      />
+          <GameControls
+            canSubmit={state.turnPlacements.length > 0}
+            canRecall={state.turnPlacements.length > 0}
+            canExchange={
+              state.turnPlacements.length === 0 &&
+              state.players[0].rack.length > 0 &&
+              state.tileBag.length > 0
+            }
+            isHumanTurn={isHumanTurn}
+            isAIThinking={state.isAIThinking}
+            onSubmit={handleSubmit}
+            onPass={handlePass}
+            onRecall={handleRecall}
+            onShuffle={handleShuffle}
+            onExchange={handleExchange}
+          />
+        </div>
 
-      <div className="w-full max-w-md">
-        <MoveHistory history={state.moveHistory} players={state.players} />
+        <div className="w-full xl:w-80 xl:sticky xl:top-4 self-start">
+          <MoveHistory history={state.moveHistory} players={state.players} />
+        </div>
       </div>
 
       {state.phase === 'finished' && (

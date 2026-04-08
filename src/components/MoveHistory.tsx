@@ -16,15 +16,17 @@ export default function MoveHistory({ history, players }: MoveHistoryProps) {
     );
   }
 
+  const reversedHistory = [...history].reverse();
+
   return (
-    <div className="bg-gray-800 rounded-lg p-3 max-h-48 overflow-y-auto">
+    <div className="bg-gray-800 rounded-lg p-3 max-h-[32rem] overflow-y-auto">
       <h3 className="text-sm font-semibold text-gray-400 mb-2 uppercase tracking-wide">
         Move History
       </h3>
       <div className="space-y-1">
-        {history.map((entry, idx) => {
+        {reversedHistory.map((entry, idx) => {
           const player = players[entry.playerIndex];
-          const icon = player.type === 'human' ? '👤' : '🤖';
+          const icon = player.type === 'human' ? 'Player' : 'AI';
 
           if (!entry.move) {
             return (
