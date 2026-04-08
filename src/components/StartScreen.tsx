@@ -54,7 +54,7 @@ export default function StartScreen({ onStartGame, isLoading }: StartScreenProps
                   : 'border-gray-600 hover:border-gray-500'
               }`}
             >
-              <div className="text-2xl mb-2">Target</div>
+              <div className="text-2xl mb-2">🎯</div>
               <div className="font-bold text-white text-sm">Greedy</div>
               <div className="text-xs text-gray-400 mt-1">
                 Picks the highest scoring move each turn
@@ -69,7 +69,7 @@ export default function StartScreen({ onStartGame, isLoading }: StartScreenProps
                   : 'border-gray-600 hover:border-gray-500'
               }`}
             >
-              <div className="text-2xl mb-2">Brain</div>
+              <div className="text-2xl mb-2">🧠</div>
               <div className="font-bold text-white text-sm">Heuristic</div>
               <div className="text-xs text-gray-400 mt-1">
                 Strategic play with board control and rack management
