@@ -191,45 +191,47 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-green-950 to-gray-900 flex flex-col items-center px-4 py-4 gap-4">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-600 font-serif">
-          SCRABBLE
-        </h1>
-        <p className="text-xs text-green-400/60 tracking-widest">
-          {state.aiStrategy === 'greedy' ? 'GREEDY' : 'HEURISTIC'} AI
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-green-950 to-gray-900 px-4 py-4">
+      <div className="mx-auto w-full max-w-[1400px] flex flex-col gap-4 xl:grid xl:grid-cols-[280px_minmax(0,1fr)_320px] xl:items-start">
+        <div className="flex flex-col gap-4 xl:sticky xl:top-4 xl:self-start">
+          <div className="text-left">
+            <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-600 font-serif">
+              SCRABBLE
+            </h1>
+            <p className="text-xs text-green-400/60 tracking-widest">
+              {state.aiStrategy === 'greedy' ? 'GREEDY' : 'HEURISTIC'} AI
+            </p>
+          </div>
 
-      <ScoreBoard
-        players={state.players}
-        currentPlayerIndex={state.currentPlayerIndex}
-        tilesRemaining={state.tileBag.length}
-      />
+          <ScoreBoard
+            players={state.players}
+            currentPlayerIndex={state.currentPlayerIndex}
+            tilesRemaining={state.tileBag.length}
+          />
+        </div>
 
-      <div
-        className={'text-sm font-medium px-4 py-2 rounded-lg text-center max-w-md ' + (
-          state.message.includes('Invalid') || state.message.includes('must')
-            ? 'bg-red-900/50 text-red-300'
-            : state.isAIThinking
-            ? 'bg-blue-900/50 text-blue-300'
-            : 'bg-gray-800/80 text-gray-300'
-        )}
-      >
-        {state.isAIThinking && (
-          <span className="inline-flex items-center gap-2">
-            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-            </svg>
-            Computer is thinking...
-          </span>
-        )}
-        {!state.isAIThinking && state.message}
-      </div>
+        <div className="min-w-0 flex flex-col items-center gap-4">
+          <div
+            className={'text-sm font-medium px-4 py-2 rounded-lg text-center max-w-md ' + (
+              state.message.includes('Invalid') || state.message.includes('must')
+                ? 'bg-red-900/50 text-red-300'
+                : state.isAIThinking
+                ? 'bg-blue-900/50 text-blue-300'
+                : 'bg-gray-800/80 text-gray-300'
+            )}
+          >
+            {state.isAIThinking && (
+              <span className="inline-flex items-center gap-2">
+                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>
+                Computer is thinking...
+              </span>
+            )}
+            {!state.isAIThinking && state.message}
+          </div>
 
-      <div className="w-full max-w-7xl flex flex-col xl:flex-row items-start justify-center gap-4">
-        <div className="flex-1 min-w-0 flex flex-col items-center gap-4">
           <Board
             board={state.board}
             turnPlacements={state.turnPlacements}
@@ -268,7 +270,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="w-full xl:w-80 xl:sticky xl:top-4 self-start">
+        <div className="w-full xl:w-80 xl:sticky xl:top-4 xl:self-start">
           <MoveHistory history={state.moveHistory} players={state.players} />
         </div>
       </div>
